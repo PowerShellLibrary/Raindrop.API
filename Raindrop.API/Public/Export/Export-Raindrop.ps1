@@ -7,7 +7,7 @@ function Export-Raindrop {
         [int] $CollectionId = 0,
 
         [Parameter(Mandatory = $true)]
-        [ValidateSet("csv", "html", "zip")]
+        [ValidateSet("csv", "html", "zip", "txt")]
         [string] $Format,
 
         [Parameter(Mandatory = $false)]
