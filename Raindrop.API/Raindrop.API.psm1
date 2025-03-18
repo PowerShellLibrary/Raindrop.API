@@ -1,4 +1,4 @@
-$Global:RaindropBaseUrl  = "https://api.raindrop.io/rest/v1/"
+$Global:RaindropBaseUrl  = "https://api.raindrop.io/rest/v1"
 
 #Get public and private function definition files.
 $Public = @( Get-ChildItem -Path $PSScriptRoot\Public -Recurse -Filter *.ps1 -ErrorAction SilentlyContinue )

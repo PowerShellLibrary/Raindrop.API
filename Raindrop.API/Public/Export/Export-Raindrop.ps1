@@ -33,8 +33,7 @@ function Export-Raindrop {
 
     try {
         if ([string]::IsNullOrEmpty($OutFile)) {
-            $response = Invoke-RestMethod -Uri $url -Headers $headers -Method Get
-            return $response
+            Invoke-RestMethod -Uri $url -Headers $headers -Method Get
         }
         else {
             Invoke-WebRequest -Uri $url -Headers $headers -Method Get -OutFile $OutFile
