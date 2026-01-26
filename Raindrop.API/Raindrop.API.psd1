@@ -1,11 +1,11 @@
 
 @{
     RootModule        = 'Raindrop.API.psm1'
-    ModuleVersion     = '0.1.0'
+    ModuleVersion     = '1.0.0'
     GUID              = '051beb040c1c4869a116f1d524b04afc'
     Author            = 'Alan Plocieniak'
     CompanyName       = 'Alan Plocieniak'
-    Copyright         = '(c) 2025 Alan Plocieniak. All rights reserved.'
+    Copyright         = '(c) 2026 Alan Plocieniak. All rights reserved.'
     Description       = 'PowerShell module to interact with the Raindrop.io API'
     PowerShellVersion = '5.0'
     FunctionsToExport = '*'

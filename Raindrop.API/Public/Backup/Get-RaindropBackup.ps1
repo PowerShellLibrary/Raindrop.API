@@ -12,6 +12,7 @@ function Get-RaindropBackup {
         return $response.items
     }
     catch {
-        Write-Error "Failed to retrieve projects: $_"
+        $errorMsg = Format-RaindropError -ErrorRecord $_ -Url $url
+        Write-Error $errorMsg
     }
 }
