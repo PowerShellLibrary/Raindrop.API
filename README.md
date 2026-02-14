@@ -7,18 +7,52 @@ PowerShell module to interact with the [**Raindrop.io**](https://developer.raind
 ## Available Endpoints
 
 ### Authentication
-- **Get-RaindropAuthHeader**: Builds an authorization header for API requests.
+- **Get-RaindropAuthHeader**: Builds an authorization header for API requests using the provided API token.
 
 ### User
-- **Get-RaindropBackup**: Retrieves a list of backups for the authenticated user.
--
+- **Get-RaindropUser**: Retrieves information about the authenticated user.
+
 ### Backup
-- **New-RaindropBackup**: Creates a new backup for the authenticated user. This requires some time.
-- **Get-RaindropBackup**: Retrieves a list of backups for the authenticated user.
-- **Save-RaindropBackup**: Saves a backup to a file in the specified format.
+- **New-RaindropBackup**: Initiates the creation of a new backup for the authenticated user. This process may take some time.
+- **Get-RaindropBackup**: Retrieves a list of available backups for the authenticated user.
+- **Save-RaindropBackup**: Downloads and saves a specific backup to a file in CSV or HTML format.
 
 ### Export
-- **Export-Raindrop**: Exports a collection of Raindrop bookmarks in the specified format.
+- **Export-Raindrop**: Exports a collection of Raindrop bookmarks in the specified format (CSV, HTML, ZIP, or TXT). Supports sorting by creation date, score, title, or domain, and filtering by search terms.
+
+## Examples
+
+```powershell
+# Import the module (adjust path as needed)
+Import-Module .\Raindrop.API\Raindrop.API.psm1 -Force
+
+# Set your API token
+$ApiToken = 'YOUR_API_TOKEN'
+
+# Get authenticated user info
+$user = Get-RaindropUser -ApiToken $ApiToken
+
+# Export bookmarks to a TXT file (sorted & filtered)
+# Exports collection 0 (all) to .\export.txt, sorted by created desc, searching 'youtube'
+Export-Raindrop -ApiToken $ApiToken -collectionId 0 -format 'txt' -OutFile '.\export.txt' -Sort '-created' -Search 'youtube'
+
+# Export bookmarks to CSV and convert to PS objects
+# When called without -OutFile, Export-Raindrop returns CSV text
+$csv = Export-Raindrop -ApiToken $ApiToken -collectionId 0 -format 'csv'
+
+# List available backups
+Get-RaindropBackup -ApiToken $ApiToken
+
+# Save a specific backup to CSV
+# Pick an ID from $backups and save it
+Save-RaindropBackup -ApiToken $ApiToken -id 67d6c08737249bbc09d0f54f -format 'csv' -OutFile ".\export.csv"
+
+# Create a new backup (may take time)
+New-RaindropBackup -ApiToken $ApiToken
+
+# Download an export as ZIP file
+Export-Raindrop -ApiToken $ApiToken -collectionId 0 -format 'zip' -OutFile '.\export-main.zip'
+```
 
 ## License
 [MIT License](LICENSE.md) © Alan Płócieniak
